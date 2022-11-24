@@ -21,15 +21,33 @@ const Header = () => {
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/blog'}>Blog</Link></li>
-                    
+                    <li>
+                    <select className="select max-w-xs">
+                    <option disabled selected>Categories</option>
+                    <option><Link>BedRoom</Link></option>
+                    <option><Link>Kitchen</Link></option>
+                    <option><Link>Dinninng</Link></option>
+                    </select>
+                    </li>
                 </ul>
                 </div>
                 <h2 className="btn btn-ghost normal-case text-xl"> Resell Your Furnitures</h2>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/blog'}>Blog</Link></li>
+                    <li><Link className='font-bold' to={'/'}>Home</Link></li>
+                    <li><Link className='font-bold' to={'/blog'}>Blog</Link></li>
+                    <li>
+                    <div className="dropdown dropdown-right">
+                    <label tabIndex={0} className=" font-bold">Categories</label>
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><Link to={'/displayProduct'}>BedRoom</Link></li>
+                        <li><Link>Kitchen</Link></li>
+                        <li><Link>Dinninng</Link></li>
+                        
+                    </ul>
+                    </div>
+                    </li>
                 </ul>
             </div>
             <div className="navbar-end">
