@@ -4,6 +4,7 @@ import DisplayProducts from "../pages/DisplayProducts";
 import AddAProduct from "../pages/home/AddAProduct";
 import Home from "../pages/home/Home";
 import Login from "../pages/Login";
+import MyProducts from "../pages/MyProducts";
 import Register from "../pages/Register";
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/myProduct',
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/addAProduct',

@@ -1,18 +1,20 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const AddAProduct = () => {
     const {user} = useContext(AuthContext)
-    const email = user.email;
+    const email = user?.email;
     const {register, handleSubmit, formState: {errors}} = useForm()
     const date = new Date();
     let hour = date.getHours()
     let minutes = date.getMinutes()
-    
-    const handleForm = data => {
+    const navigate = useNavigate()
 
+
+    const handleForm = data => {
         const product = {
             data,
             hour,
@@ -30,6 +32,7 @@ const AddAProduct = () => {
         .then(data => {
             if(data.acknowledged === true){
                 toast('product added successfully')
+                navigate('/myProduct')
             }
             // setCreateUserEmail(email)
         })
