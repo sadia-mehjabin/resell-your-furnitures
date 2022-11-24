@@ -11,6 +11,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        // loader:  ({params}) => fetch(`http://localhost:5000/products/${params.id}`) ,
         // errorElement: <DisplayError></DisplayError>,
         children: [
             {
@@ -29,9 +30,14 @@ const router = createBrowserRouter([
                 path: '/addAProduct',
                 element: <AddAProduct></AddAProduct>
             },
+            // {
+            //     path: '/displayProduct',
+            //     element: <DisplayProducts></DisplayProducts>
+            // },
             {
-                path: '/displayProduct',
-                element: <DisplayProducts></DisplayProducts>
+                path: '/displayProduct/:id',
+                element: <DisplayProducts></DisplayProducts>,
+                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
             },
         ]
     },

@@ -1,12 +1,15 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Footer from '../shared/Footer';
 import Header from '../shared/Header';
 
-const Main = () => {
+const Main = ({params}) => {
+    const data = useLoaderData()
     return (
         <div>
-            <Header></Header>
+            <Header
+            params={params}
+            ></Header>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

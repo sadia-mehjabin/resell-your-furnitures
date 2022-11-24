@@ -28,6 +28,7 @@ const ProductCard = ({product}) => {
             {
                 bookingProduct && <BookingModal
                 product={bookingProduct}
+                setBookingProduct={setBookingProduct}
                 ></BookingModal>
             }
         </div> 

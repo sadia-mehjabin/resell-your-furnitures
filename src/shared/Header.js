@@ -1,9 +1,21 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
-const Header = () => {
+const Header = ({params}) => {
     const {user, logOut} = useContext(AuthContext)
+    const [categories, setCategories] = useState([])
+    const data = useLoaderData()
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products')
+        .then(res => res.json())
+        .then(data => {
+            // const filteredData = data.map(category => setCategories(category.data.selectCategory)) 
+            // console.log(categories)
+            setCategories(data)
+        })
+    }, [])
 
     const handleLogOut = () => {
         logOut()
@@ -11,6 +23,7 @@ const Header = () => {
         })
         .catch(err => console.log(err))
       }
+
     return (
         <div className="navbar" style={{ background: 'linear-gradient(to right, rgba(250, 220, 47), rgba(118, 75, 162, 0.5))'}}>
             <div className="navbar-start">
@@ -37,14 +50,17 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link className='font-bold' to={'/'}>Home</Link></li>
                     <li><Link className='font-bold' to={'/blog'}>Blog</Link></li>
+                    <li><Link className='font-bold' to={'/addAProduct'}>addAProduct</Link></li>
                     <li>
                     <div className="dropdown dropdown-right">
-                    <label tabIndex={0} className=" font-bold">Categories</label>
+                    <label tabIndex={0} className=" font-bold">Categories {categories?.length}</label>
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><Link to={'/displayProduct'}>BedRoom</Link></li>
+                        {/* <li><Link to={'/displayProduct'}>BedRoom</Link></li>
                         <li><Link>Kitchen</Link></li>
-                        <li><Link>Dinninng</Link></li>
-                        
+                        <li><Link>Dinninng</Link></li> */}
+                        {
+                            categories?.map(category => <Link to={`/displayProduct/${category.data.selectCategory}`}>{category.data.selectCategory}</Link>)
+                        }
                     </ul>
                     </div>
                     </li>

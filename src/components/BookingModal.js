@@ -1,13 +1,37 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthProvider';
 
-const BookingModal = ({product}) => {
+const BookingModal = ({product, setBookingProduct}) => {
     const {user} = useContext(AuthContext)
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     const handleModal = data => {
-        console.log(data)
+        
+        const bookedProduct = {
+            itemName: product.data.productName,
+            price: product.data.resalePrice,
+            userName: user.displayName,
+            userEmail: user.email,
+            phone: data.phone,
+            meetingPlace: data.meetingPlace
+        }
+        console.log(bookedProduct)
+        fetch('http://localhost:5000/bookedProducts',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookedProduct)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.acknowledged === true){
+                toast('booking product successfully')
+            }
+            // setCreateUserEmail(email)
+        })
     }
     return (
         <div>
@@ -33,9 +57,10 @@ const BookingModal = ({product}) => {
                 <input type="text" placeholder={user?.email} className="input input-bordered w-full mb-3" disabled {...register("email")} />
                 <input type="text" placeholder='write your phone number' className="input input-bordered w-full my-3" {...register("phone", {required: true})}/>
                 <input type="text" placeholder='Where do you want to meet?' className="input input-bordered w-full my-3" {...register("meetingPlace", {required: true})}/>
-                <div className="modal-action">
+                <div className="modal-action flex">
                 <button>
-                <label htmlFor="bookingModal" type="submit"className="btn w-full">Confirm booking</label>
+                <label htmlFor="bookingModal" type="submit"className="btn">Confirm booking</label>
+                <button onClick={() => setBookingProduct(null)} className='btn'>Cancel</button>
                 </button>
                 </div>
                 </form>
