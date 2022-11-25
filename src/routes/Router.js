@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import Blog from "../pages/Blog";
 import DisplayProducts from "../pages/DisplayProducts";
 import AddAProduct from "../pages/home/AddAProduct";
 import Home from "../pages/home/Home";
 import Login from "../pages/Login";
 import MyProducts from "../pages/MyProducts";
+import PageNotFound from "../pages/PageNotFound";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -28,8 +32,8 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/myProduct',
-                element: <MyProducts></MyProducts>
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/addAProduct',
@@ -42,19 +46,23 @@ const router = createBrowserRouter([
             {
                 path: '/displayProduct/:id',
                 element: <DisplayProducts></DisplayProducts>,
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/products2/${params.id}`)
+            },
+            {
+                path: '/*',
+                element: <PageNotFound></PageNotFound>
             },
         ]
     },
-    // {
-    //     path: '/dashboard',
-    //     element: <DashboardLayout></DashboardLayout>,
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     //     errorElement: <DisplayError></DisplayError>,
-    //     children: [
-    //         {
-    //             path: '/dashboard',
-    //             element: <MyAppoinment></MyAppoinment>
-    //         },
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyProducts></MyProducts>
+            },
     //         {
     //             path: '/dashboard/allUsers',
     //             element: <AdminRoute><Users></Users></AdminRoute>
@@ -73,8 +81,8 @@ const router = createBrowserRouter([
     //             </AdminRoute>,
     //             loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
     //         },
-    //     ]
-    // }
+         ]
+    }
 
 ])
 

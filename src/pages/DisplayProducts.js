@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 const DisplayProducts = () => {
     const [products, setProducts] = useState()
     const dataLoader = useLoaderData()
+    console.log(dataLoader)
     
     // useEffect(() => {
     //     fetch('http://localhost:5000/products/')
@@ -30,6 +31,7 @@ const DisplayProducts = () => {
                 product={product}
                 ></ProductCard>)
             }
+            
         </div>
     );
 };

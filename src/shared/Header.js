@@ -11,8 +11,6 @@ const Header = ({params}) => {
         fetch('http://localhost:5000/products')
         .then(res => res.json())
         .then(data => {
-            // const filteredData = data.map(category => setCategories(category.data.selectCategory)) 
-            // console.log(categories)
             setCategories(data)
         })
     }, [])

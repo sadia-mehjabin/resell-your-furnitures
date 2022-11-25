@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import BookingModal from './BookingModal';
 
 const ProductCard = ({product}) => {
-    const [bookingProduct, setBookingProduct] = useState(null ) 
-    const object = product?.data;  
-    const {productName, OriginalPrice, resalePrice, location, photoURL, description, yearsOfUse, sellersName, selectCondition , mobileNumber} = object;
+    const [bookingProduct, setBookingProduct] = useState(null) 
+      
+    const {productName, OriginalPrice, resalePrice, location, photoURL, description, yearsOfUse, sellersName, selectCondition , mobileNumber} = product.data;
     
     return (
         <div className="card card-side bg-base-200 shadow-xl">
-        <figure><img className='h-96' src={photoURL} alt="Movie"/></figure>
+        <figure><img className='h-96' src={product?.data?.photoURL} alt="Movie"/></figure>
         <div className="card-body">
             <h2 className="card-title">product name: {productName}</h2>
             <p>Description: {description}</p>
