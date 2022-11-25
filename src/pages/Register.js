@@ -20,7 +20,7 @@ const Register = () => {
             }
             updatedUser(userInfo)
             .then(()=> {
-                saveUser(data.name, data.email, data.role) 
+                saveUser(data.name, data.email, data.role, data.password) 
             })
             .catch(error => console.log(error))
             // setLoginUserEmail(data.email)
@@ -28,8 +28,8 @@ const Register = () => {
         .catch(error => setRegisterError(error))
     }
 
-    const saveUser = (name, email, role) => {
-        const user = {name, email, role};
+    const saveUser = (name, email, role, password) => {
+        const user = {name, email, role, password};
         fetch('http://localhost:5000/users',{
             method: 'POST',
             headers: {
