@@ -1,17 +1,24 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthProvider';
+import useAccessToken from '../hooks/useAccessToken';
 
 const Register = () => {
     const {createUser, updatedUser} = useContext(AuthContext)
     const { register, formState: {errors},  handleSubmit } = useForm();
     const [registerError, setRegisterError] = useState('')
+    const [createdEmail, setCreatedEmail] = useState('')
+    const [token] = useAccessToken(createdEmail)
+    const navigate = useNavigate()
+
+    if(token){
+        navigate('/')
+    }
 
     const handleregister = data => {
         setRegisterError('')
-        console.log(data)
         createUser(data.email, data.password)
         .then(result => {
             const user = result.user;
@@ -23,7 +30,7 @@ const Register = () => {
                 saveUser(data.name, data.email, data.role, data.password) 
             })
             .catch(error => console.log(error))
-            // setLoginUserEmail(data.email)
+            
         })
         .catch(error => setRegisterError(error))
     }
@@ -39,13 +46,17 @@ const Register = () => {
         })
         .then(res => res.json())
         .then(data => {
+            
             console.log(data)
             if(data.acknowledged === true){
+                setCreatedEmail(email)
                 toast('user added successfully')
+                
             }
-            // setCreateUserEmail(email)
         })
     }
+
+
     return (
         <div className="hero">
             <div className="card w-full bg-blue-100 max-w-sm shadow-2xl m-5 p-6" >
@@ -60,9 +71,6 @@ const Register = () => {
             <label className="label">
                 <span className="label-text">Select</span>
             </label>
-            {/* <input className='input input-bordered w-full' 
-            {...register("name") 
-            } />  */}
             <select className="select w-full " {...register("role") 
             }>
                 <option>User</option>

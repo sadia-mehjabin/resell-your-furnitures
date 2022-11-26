@@ -12,13 +12,23 @@ const MyProducts = () => {
     const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('newAccessToken')}`
+                }
+            });
             const data = await res.json()
             console.log(data)
             return data;
         }
     })
 
+    if(isLoading){
+        return <div className="flex items-center justify-center ">
+        <div className="w-16 h-16 border-b-2 border-gray-900 rounded-full animate-spin"></div>
+        </div>
+    }
+    refetch()
     const handleDelete = (id) => {
         
         const agree = window.confirm('are you sure to delete?')
@@ -37,6 +47,16 @@ const MyProducts = () => {
             })
         }
     };
+
+    const handleChangeStatus = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
     return (
         <div className="overflow-x-auto">
             <h2 className='text-5xl text-center font-bold m-5'>My Products</h2>
@@ -54,7 +74,7 @@ const MyProducts = () => {
                 </thead>
                 <tbody>
                     {
-                        myproducts?.map((product, i) =>
+                        myproducts.length && myproducts?.map((product, i) =>
                             <tr>
                                 <th>{i + 1}</th>
                                 <td>
@@ -67,7 +87,7 @@ const MyProducts = () => {
                                 <td>{product.data.productName}</td>
                                 <td>{product.data.selectCategory}</td>
                                 <td>{product.data.resalePrice}</td>
-                                <td><button className='btn btn-sm btn-success'>Advertise</button></td>
+                                <td><button onClick={()=> handleChangeStatus(product._id)} className='btn btn-sm btn-success'>Advertise</button></td>
                                 <td><button   className='btn btn-sm btn-error' onClick={() => handleDelete(product._id)}>Delete</button></td>
                             </tr>
                         )

@@ -12,9 +12,12 @@ const DashboardLayout = () => {
             return data;
         }
     })
-
-    // const role = usersRole.map(rol => console.log(rol.role))
-
+    if(isLoading){
+        refetch()
+        return <div className="flex items-center justify-center ">
+        <div className="w-16 h-16 border-b-2 border-gray-900 rounded-full animate-spin"></div>
+    </div>
+    }
     return (
         <div>
             <Header></Header>
@@ -36,14 +39,23 @@ const DashboardLayout = () => {
                                     return <>
                                         <li><Link>Add a product</Link></li>
                                         <li><Link>My products</Link></li>
-                                        <li><Link>My buyers</Link></li>
+                                        
                                     </>
                                 }
                             })
                         }
-                        <li><Link>All users</Link></li>
-                        <li><Link>All buyers</Link></li>
-                        <li><Link>Reported items</Link></li>
+                        {
+                            usersRole.map(rol => {
+                                if (rol.role === 'admin') {
+                                    return <>
+                                        <li><Link to={'/dashboard/allUsers'}>All users</Link></li>
+                                        <li><Link>All sellers</Link></li>
+                                        <li><Link>Reported items</Link></li>
+                                    </>
+                                }
+                            })
+                        }
+
 
                     </ul>
 

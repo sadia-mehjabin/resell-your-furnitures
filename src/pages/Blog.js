@@ -5,30 +5,35 @@ const Blog = () => {
         <div>
             <h2 className='text-5xl text-center m-5 font-semibold'>Welcome to blog page</h2>
             <div className='grid gap-5 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1'>
-            <div className='p-10 bg-green-200 m-5 rounded-xl'>
-                <h2 className='text-2xl mb-3 font-semibold'>Question: what is the difference between SQL & non SQL ?</h2>
-                <p>Ans: SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. SQL databases are table-based, while NoSQL databases are document, key-value, graph, or wide-column stores. SQL databases are better for multi-row transactions, while NoSQL is better for unstructured data like documents or JSON.</p>
-            </div>
-            <div className='p-10 bg-pink-200 m-5 rounded-xl'>
-                <h2 className='text-2xl mb-3 font-semibold'>Question: what is JWT? How does it works?</h2>
-                <p>Ans: JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA. <br />
-                Authentication server verifies the credentials and issues a jwt signed using either a secret salt or a private key. User's Client uses the JWT to access protected resources by passing the JWT in HTTP Authorization header. Resource server then verifies the authenticity of the token using the secret salt/ public key.
+                <div className='p-10 bg-green-200 m-5 rounded-xl'>
+                    <h2 className='text-2xl mb-3 font-semibold'>Question: What are the different ways to manage a state in a React application?</h2>
+                    <p>Ans: Are you facing difficulties in making loading spinners or a pop-up appears at the right time? It can be because of an unmanaged state in React. A state is a JavaScript object. It stores a component’s dynamic data and determines the component’s behavior. In other words, it is the interface between any data of changes (backend or local) and the representation of this data with UI elements in the frontend.
+                        <br />
+                        The state helps in keeping the data of different components in sync since each state update will re-render all relevant components. It can also act as a medium to communicate between various components. Managing state is one of the hardest parts of any application, and that is why there are so many state management libraries/tools available, including Redux, MobX, Flux, RxJS, and more.</p>
+                </div>
+                <div className='p-10 bg-purple-300 m-5 rounded-xl'>
+                    <h2 className='text-2xl mb-3 font-semibold'>Question: React vs. Angular vs. Vue?</h2>
+                    <p>Ans: There are three frameworks for building web applications that every frontend developer has heard about: React, Vue.js, and Angular.
 
-                </p>
+                        React is a UI library, Angular is a fully-fledged front-end framework, while Vue.js is a progressive framework.
+
+                        They can be used almost interchangeably to build front-end applications, but they’re not 100 percent the same, so it makes sense to compare them and understand their differences.
+
+                        Each framework is component-based and allows the rapid creation of UI features.
+
+                        However, they all have a different structure and architecture</p>
+                </div>
+                <div className='p-10 bg-pink-200 m-5 rounded-xl'>
+                    <h2 className='text-2xl mb-3 font-semibold'>Question: How does prototypical inheritance work?</h2>
+                    <p>Ans: The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object. getPrototypeOf and Object.
+                    </p>
+                </div>
+                <div className='p-10 bg-orange-200 m-5 rounded-xl'>
+                    <h2 className='text-2xl mb-3 font-semibold'>Question: What is a unit test? Why should we write unit tests?</h2>
+                    <p>Ans: The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.</p>
+                </div>
+                
             </div>
-            <div className='p-10 bg-orange-200 m-5 rounded-xl'>
-                <h2 className='text-2xl mb-3 font-semibold'>Question: what is the difference between javascript & Node.js?</h2>
-                <p>Ans: . NodeJS : 
-                NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development. 
-                <br />
-                2. JavaScript : 
-                Javascript is a Scripting language. It is mostly abbreviated as JS. It can be said that Javascript is the updated version of the ECMA script. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance.</p>
-            </div>
-            <div className='p-10 bg-purple-300 m-5 rounded-xl'>
-                <h2 className='text-2xl mb-3 font-semibold'>Question: How does Node.js handle multiple request at the same time?</h2>
-                <p>Ans: How NodeJS handle multiple client requests? NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.</p>
-            </div>
-        </div>
         </div>
     );
 };

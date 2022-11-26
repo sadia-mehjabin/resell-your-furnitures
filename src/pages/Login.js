@@ -4,48 +4,37 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import useAccessToken from '../hooks/useAccessToken';
 // import useToken from '../hooks/useToken';
 
 
 const Login = () => {
     const provider = new GoogleAuthProvider()
     const {userLogin, googleLogin} = useContext(AuthContext)
-    const [message, setMessage] = useState('')
+    // const [message, setMessage] = useState('')
     const navigate = useNavigate()
     const location = useLocation()
     const { register, formState: {errors},  handleSubmit } = useForm();
     const [loginUserEmail, setLoginUserEmail] = useState("")
     const [loginError, setLoginError] = useState("")
     const from = location.state?.from?.pathname || '/' ;
-    // const [token] = useToken(loginUserEmail)
+    const [token] = useAccessToken(loginUserEmail)
 
-    // if(token){
-    //     console.log(token)
-    // }
+    if(token){
+        console.log(token)
+        navigate(from, {replace:true})
+    }
     const handleLogin = data => {
         setLoginError('')
         userLogin(data.email, data.password)
         .then(result => {
             const user = result.user;
-            console.log(user)
             setLoginUserEmail(data.email)
             toast('successfully Loged in')
+            setLoginUserEmail(data.email)
+            
         })
         .catch(error => setLoginError(error.message))
-    // useTitle('login')
-
-            // fetch('https://event-photographer-server.vercel.app/jwt', {
-            //     method: 'POST',
-            //     headers : {
-            //         'content-type' : 'application/json'
-            //     },
-            //     body: JSON.stringify(existingUser)
-            // })
-            // .then(res => res.json())
-            // .then(data => {
-            //     // localStorage.setItem('token', data.token)
-            //     navigate(from, {replace:true})
-            // }) 
     }
 
     const handleGoogleLogIn = () => {

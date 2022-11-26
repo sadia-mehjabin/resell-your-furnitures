@@ -33,15 +33,23 @@ const Home = () => {
 
             <div className='m-5 bg-orange-50 rounded-3xl p-2'>
                 <h2 className='text-5xl text-center font-bold m-5'>Category section</h2>
-            <div>
-                <CategoryCard></CategoryCard>
-            </div>
+                <div>
+                    <CategoryCard></CategoryCard>
+                </div>
             </div>
             <AdvertiseSection
                 products={products}
             ></AdvertiseSection>
 
-            
+            <div className='bg-green-200 w-3/4 mx-auto m-5 p-5 rounded-lg'>
+                <h2 className='text-center text-5xl font-bold m-4'>Contact us</h2>
+                <p className='text-center font-bold'>our office: 31/A mirpur 12 road, dhaka.
+                    <br />
+                    email: resellProducts@Gmail.com <br />
+                    contact no: 7224356
+                </p>
+            </div>
+
         </div>
     );
 };

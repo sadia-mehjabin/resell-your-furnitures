@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = () => {
-    const categories = ['BedRoom', 'Kitchen', 'Dinning']
+    const categories = ['BedRoom', 'Kitchen', 'Dining']
 
     return (
         <div className='grid lg:grid-cols-3 gap-7 m-3 '>
