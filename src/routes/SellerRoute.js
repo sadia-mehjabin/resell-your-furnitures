@@ -7,15 +7,17 @@ import useIsSeller from '../hooks/useisSeller';
 const SellerRoute = ({children}) => {
     const {user, load} = useContext(AuthContext)
     const [isSeller, isSellerLoading] = useIsSeller(user?.email)
-    const [isAdmin] = useAdmin(user?.email)
-    const location = useLocation();
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
+    const location = '/';
 
-    if(load || isSellerLoading){
+    if(load || isSellerLoading || isAdminLoading){
         return <button className="btn loading">loading</button>
     }
 
-    if(user && isSeller || isAdmin ){
-        return children;
+    if(user){
+        if(isSeller || isAdmin){
+            return children;
+        }    
     }
     
     return <Navigate to='/login' state={{from: location}} replace></Navigate>;

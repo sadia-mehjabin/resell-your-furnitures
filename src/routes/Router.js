@@ -12,7 +12,9 @@ import Home from "../pages/home/Home";
 import Login from "../pages/Login";
 import MyProducts from "../pages/MyProducts";
 import PageNotFound from "../pages/PageNotFound";
+import Payment from "../pages/Payment";
 import Register from "../pages/Register";
+import Error from "../shared/Error";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
@@ -22,8 +24,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        // loader:  ({params}) => fetch(`http://localhost:5000/products/${params.id}`) ,
-        // errorElement: <DisplayError></DisplayError>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -41,11 +42,6 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog></Blog>
             },
-           
-            // {
-            //     path: '/displayProduct',
-            //     element: <DisplayProducts></DisplayProducts>
-            // },
             {
                 path: '/displayProduct/:id',
                 element: <DisplayProducts></DisplayProducts>,
@@ -60,10 +56,16 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/dashboard',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
             },
             {
                 path: '/dashboard/allUsers',
