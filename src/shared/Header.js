@@ -7,13 +7,6 @@ const Header = ({params}) => {
     // const [categories, setCategories] = useState([])
     const data = useLoaderData()
     const categories = ['BedRoom', 'Kitchen', 'Dining']
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/products')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setCategories(data)
-    //     })
-    // }, [])
 
     const handleLogOut = () => {
         logOut()
@@ -48,7 +41,6 @@ const Header = ({params}) => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link className='font-bold' to={'/'}>Home</Link></li>
                     <li><Link className='font-bold' to={'/blog'}>Blog</Link></li>
-                    <li><Link className='font-bold' to={'/addAProduct'}>addAProduct</Link></li>
                     <li>
                     <div className="dropdown dropdown-right">
                     <label tabIndex={0} className=" font-bold">Categories</label>

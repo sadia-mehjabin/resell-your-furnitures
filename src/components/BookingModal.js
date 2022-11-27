@@ -10,6 +10,7 @@ const BookingModal = ({product, setBookingProduct}) => {
     const handleModal = data => {
         
         const bookedProduct = {
+            image:product.data.photoURL,
             itemName: product.data.productName,
             price: product.data.resalePrice,
             userName: user.displayName,

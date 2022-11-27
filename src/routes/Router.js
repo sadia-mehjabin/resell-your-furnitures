@@ -5,6 +5,7 @@ import Blog from "../pages/Blog";
 import AllSellers from "../pages/Dashboard/AllSellers";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import MyOrders from "../pages/Dashboard/MyOrders";
+import ReportedItems from "../pages/Dashboard/ReportedItems";
 import DisplayProducts from "../pages/DisplayProducts";
 import AddAProduct from "../pages/home/AddAProduct";
 import Home from "../pages/home/Home";
@@ -39,10 +40,7 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog></Blog>
             },
-            {
-                path: '/addAProduct',
-                element: <AddAProduct></AddAProduct>
-            },
+           
             // {
             //     path: '/displayProduct',
             //     element: <DisplayProducts></DisplayProducts>
@@ -65,19 +63,27 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <MyProducts></MyProducts>
+                element: <MyOrders></MyOrders>
             },
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers></AllUsers>
             },
             {
-                path: '/dashboard/myOrders',
-                element: <MyOrders></MyOrders>
+                path: '/dashboard/myProducts',
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/allSellers',
                 element: <AllSellers></AllSellers>
+            },
+            {
+                path: '/dashboard/addAProduct',
+                element: <AddAProduct></AddAProduct>
+            },
+            {
+                path: '/dashboard/reportedItems',
+                element: <ReportedItems></ReportedItems>
             },
     //         {
     //             path: '/dashboard/doctors',

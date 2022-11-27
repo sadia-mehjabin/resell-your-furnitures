@@ -87,7 +87,14 @@ const MyProducts = () => {
                                 <td>{product.data.productName}</td>
                                 <td>{product.data.selectCategory}</td>
                                 <td>{product.data.resalePrice}</td>
-                                <td><button onClick={()=> handleChangeStatus(product._id)} className='btn btn-sm btn-success'>Advertise</button></td>
+                                {
+                                    product?.status ?
+                                    <td>
+                                        <button className='btn btn-sm btn-success' >Advertised</button> 
+                                    </td> 
+                                    : <td><button onClick={()=> handleChangeStatus(product._id)} className='btn btn-sm btn-success'>Advertise</button></td>
+                                    
+                                }
                                 <td><button   className='btn btn-sm btn-error' onClick={() => handleDelete(product._id)}>Delete</button></td>
                             </tr>
                         )

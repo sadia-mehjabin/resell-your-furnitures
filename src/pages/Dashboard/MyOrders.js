@@ -34,6 +34,7 @@ const MyOrders = () => {
                 <thead>
                     <tr>
                         <th></th>
+                        <th>Image</th>
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Meeting Place</th>
@@ -45,6 +46,13 @@ const MyOrders = () => {
                         myOrders.length && myOrders?.map((order, i) =>
                             <tr>
                                 <th>{i + 1}</th>
+                                <td>
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
+                                            <img src={order.image} alt="Avatar Tailwind CSS Component" />
+                                        </div>
+                                    </div>
+                                </td>
                                 <td>{order.itemName}</td>
                                 <td>{order.price}</td>
                                 <td>{order.meetingPlace}</td>
