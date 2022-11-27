@@ -15,6 +15,7 @@ import PageNotFound from "../pages/PageNotFound";
 import Register from "../pages/Register";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -59,7 +60,6 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    //     errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
@@ -67,38 +67,24 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allUsers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: '/dashboard/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/allSellers',
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/addAProduct',
-                element: <AddAProduct></AddAProduct>
+                element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
                 path: '/dashboard/reportedItems',
-                element: <ReportedItems></ReportedItems>
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
             },
-    //         {
-    //             path: '/dashboard/doctors',
-    //             element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/manageDoctors',
-    //             element: <AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/payment/:id',
-    //             element: <AdminRoute><Payment></Payment>
-    //             </AdminRoute>,
-    //             loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
-    //         },
          ]
     }
 
