@@ -1,7 +1,7 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import CheckoutForm from '../components/CheckoutForm';
 
 
@@ -9,7 +9,13 @@ const stripePromise = loadStripe(process.env.REACT_APP_pk);
 
 const Payment = () => {
     const bookingData = useLoaderData()
+    const navigation = useNavigation()
 
+    if(navigation.state === 'loading'){
+        return <div className="flex items-center justify-center ">
+        <div className="w-16 h-16 border-b-2 border-gray-900 rounded-full animate-spin"></div>
+        </div>
+    }
     return (
         <div>
             <h2 className='text-3xl text-center font-bold m-5'>Payment For <span className='text-primary'>{bookingData.itemName}</span></h2>
