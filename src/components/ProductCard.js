@@ -16,7 +16,7 @@ const ProductCard = ({product}) => {
             userEmail: user.email,
         }
     
-        fetch('http://localhost:5000/reportedItems',{
+        fetch('https://resell-your-furniture-server-side.vercel.app/reportedItems',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

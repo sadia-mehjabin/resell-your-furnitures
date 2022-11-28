@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
-
+import img from './market-original-logo-colorful-sale-badge-design-vector-20743925.webp'
 const Header = ({params}) => {
     const {user, logOut} = useContext(AuthContext)
-    // const [categories, setCategories] = useState([])
     const data = useLoaderData()
     const categories = ['BedRoom', 'Kitchen', 'Dining']
 
@@ -35,6 +34,7 @@ const Header = ({params}) => {
                     </li>
                 </ul>
                 </div>
+                <img className='w-12' src={img} alt="" />
                 <h2 className="btn btn-ghost normal-case text-xl"> Resell Your Furnitures</h2>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -54,7 +54,9 @@ const Header = ({params}) => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/dashboard'}>DashBoard</Link>
+                {
+                    user && <Link className='font-bold' to={'/dashboard'}>DashBoard</Link>
+                }
                 {
                     user? <button onClick={handleLogOut} className='btn mx-3'>Log out</button>
                     : <Link className='mx-4 btn bg-purple-700' to={'/login'}>Log In</Link>

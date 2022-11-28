@@ -1,6 +1,9 @@
 # website name: resale your furniture
 [live website link](https://resell-your-furniture.web.app)
 
+# admin email : admin@gmail.com
+# admin password: admin1
+
 * This is a resale furniture website.
 * you can sell your old furniture here, and buy also.
 * we provide meet person to person sell or buy system.

@@ -44,8 +44,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/displayProduct/:id',
-                element: <DisplayProducts></DisplayProducts>,
-                loader: ({params}) => fetch(`http://localhost:5000/products2/${params.id}`)
+                element: <PrivateRoute><DisplayProducts></DisplayProducts></PrivateRoute>,
+                loader: ({params}) => fetch(`https://resell-your-furniture-server-side.vercel.app/products2/${params.id}`)
             },
             {
                 path: '/*',
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({params}) => fetch(`https://resell-your-furniture-server-side.vercel.app/orders/${params.id}`)
             },
             {
                 path: '/dashboard/allUsers',

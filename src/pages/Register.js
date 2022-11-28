@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/AuthProvider';
 import useAccessToken from '../hooks/useAccessToken';
 
 const Register = () => {
-    const {createUser, updatedUser} = useContext(AuthContext)
+    const {createUser, updatedUser, load} = useContext(AuthContext)
     const { register, formState: {errors},  handleSubmit } = useForm();
     const [registerError, setRegisterError] = useState('')
     const [createdEmail, setCreatedEmail] = useState('')
@@ -34,10 +34,10 @@ const Register = () => {
         })
         .catch(error => setRegisterError(error))
     }
-
+    
     const saveUser = (name, email, role, password) => {
         const user = {name, email, role, password};
-        fetch('http://localhost:5000/users',{
+        fetch('https://resell-your-furniture-server-side.vercel.app/users',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -46,8 +46,8 @@ const Register = () => {
         })
         .then(res => res.json())
         .then(data => {
-            
             console.log(data)
+
             if(data.acknowledged === true){
                 setCreatedEmail(email)
                 toast('user added successfully')

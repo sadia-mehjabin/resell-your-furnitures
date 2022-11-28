@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const ReportedItems = () => {
-    const url = 'http://localhost:5000/reportedItems'
+    const url = 'https://resell-your-furniture-server-side.vercel.app/reportedItems'
 
         const { data: reportedItems = [], isLoading, refetch } = useQuery({
             queryKey: ['reportedItems'],
@@ -27,7 +27,7 @@ const ReportedItems = () => {
             const agree = window.confirm('are you sure to delete?')
     
             if(agree){
-                fetch(`http://localhost:5000/reportedItems/${id}`, {
+                fetch(`https://resell-your-furniture-server-side.vercel.app/reportedItems/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `bearer ${localStorage.getItem('newAccessToken')}`

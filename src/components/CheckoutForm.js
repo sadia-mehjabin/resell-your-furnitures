@@ -13,7 +13,7 @@ const CheckoutForm = ({ bookingData }) => {
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://resell-your-furniture-server-side.vercel.app/create-payment-intent", {
             method: "POST",
             headers:
             {
@@ -76,7 +76,7 @@ const CheckoutForm = ({ bookingData }) => {
                 bookingId: _id
             }
 
-            fetch("http://localhost:5000/payments", {
+            fetch("https://resell-your-furniture-server-side.vercel.app/payments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

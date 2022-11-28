@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/products1?email=${user?.email}`
+    const url = `https://resell-your-furniture-server-side.vercel.app/products1?email=${user?.email}`
 
     const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
@@ -34,7 +34,7 @@ const MyProducts = () => {
         const agree = window.confirm('are you sure to delete?')
 
         if(agree){
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://resell-your-furniture-server-side.vercel.app/products/${id}`, {
                 method: 'DELETE',
             })
             .then(res => res.json())
@@ -49,7 +49,7 @@ const MyProducts = () => {
     };
 
     const handleChangeStatus = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://resell-your-furniture-server-side.vercel.app/products/${id}`, {
             method: 'PUT'
         })
         .then(res => res.json())

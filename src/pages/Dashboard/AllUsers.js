@@ -6,7 +6,7 @@ const AllUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('https://resell-your-furniture-server-side.vercel.app/users');
             const data = await res.json()
             return data;
         }
@@ -24,7 +24,7 @@ const AllUsers = () => {
         const agree = window.confirm('are you sure to delete?')
 
         if(agree){
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://resell-your-furniture-server-side.vercel.app/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('newAccessToken')}`

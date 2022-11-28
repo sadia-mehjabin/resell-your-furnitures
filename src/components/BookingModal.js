@@ -19,7 +19,7 @@ const BookingModal = ({product, setBookingProduct}) => {
             meetingPlace: data.meetingPlace
         }
         console.log(bookedProduct)
-        fetch('http://localhost:5000/bookedProducts',{
+        fetch('https://resell-your-furniture-server-side.vercel.app/bookedProducts',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -17,13 +17,10 @@ const Login = () => {
     const { register, formState: {errors},  handleSubmit } = useForm();
     const [loginUserEmail, setLoginUserEmail] = useState("")
     const [loginError, setLoginError] = useState("")
-    const from = location.state?.from?.pathname || '/' ;
+    const from = location?.state?.from?.pathname || '/' ;
     const [token] = useAccessToken(loginUserEmail)
 
-    if(token){
-        console.log(token)
-        navigate(from, {replace:true})
-    }
+    
     const handleLogin = data => {
         setLoginError('')
         userLogin(data.email, data.password)
@@ -31,8 +28,9 @@ const Login = () => {
             const user = result.user;
             setLoginUserEmail(data.email)
             toast('successfully Loged in')
-            setLoginUserEmail(data.email)
-            
+            setLoginUserEmail(data.email) 
+            navigate(from, {replace:true})
+             
         })
         .catch(error => setLoginError(error.message))
     }
@@ -45,6 +43,7 @@ const Login = () => {
         })
         .catch(err => console.error(err))
     }
+
     return (
         <div className="hero">
             <div className="card w-full bg-pink-100 max-w-sm shadow-2xl m-5 p-6" >
