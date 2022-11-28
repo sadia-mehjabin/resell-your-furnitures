@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthProvider';
 import BookingModal from './BookingModal';
+import { HiCheckCircle } from "react-icons/hi";
 
 const ProductCard = ({product}) => {
     const [bookingProduct, setBookingProduct] = useState(null) 
@@ -43,12 +44,17 @@ const ProductCard = ({product}) => {
                     <p>Original price: ${OriginalPrice}</p>
                     <p>resale price: ${resalePrice}</p>
                     <p>yearsOfUse: {yearsOfUse}</p>
-                    <p>sellersName: {sellersName}</p>
+                    <div className='flex justify-evenly'>
+                    <p>sellersName: {sellersName} </p>
+                    {
+                        product.verified && <HiCheckCircle className='text-blue-500'/>
+                    }
+                    </div>
+                    
                     <p>Condition: {selectCondition}</p>
                     <p>Mobile no: {mobileNumber}</p>
                     <small>postTime: {product.hour}.{product.minutes} minutes</small>
                     <div className="card-actions justify-end ">
-                    {/* <button className="btn">Book now</button> */}
                     <label onClick={()=> setBookingProduct(product)} htmlFor="bookingModal" className="btn btn-primary w-full">Book Now</label>
                     <button className='btn btn primary w-full' onClick={handleReportItem}>Report to admin</button>
                     </div>

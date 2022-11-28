@@ -8,7 +8,6 @@ const AllSellers = () => {
             queryFn: async () => {
                 const res = await fetch('https://resell-your-furniture-server-side.vercel.app/users');
                 const data = await res.json()
-                console.log(data)
                 return data;
             }
         })
@@ -41,6 +40,21 @@ const AllSellers = () => {
         }
     };
 
+    const handleVerify = email => {
+        console.log(email)
+        fetch(`https://resell-your-furniture-server-side.vercel.app/sellers/${email}`,{
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('newAccessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            refetch()
+            
+        })
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -62,7 +76,12 @@ const AllSellers = () => {
                                 <tr>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><button className='btn btn-success btn-sm'>Verify</button></td>
+                                <td>
+                                    {
+                                        user.verified ? <p className='text-primary font-bold'>Verified</p> :
+                                        <button onClick={() => handleVerify(user.email)} className='btn btn-success btn-sm'>Verify</button>
+                                    }
+                                </td>
                                 <td><button className='btn btn-error btn-sm' onClick={()=> handleDelete(user._id)}>Delete</button></td>
                                 
                             </tr> 

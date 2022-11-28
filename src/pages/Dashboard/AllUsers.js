@@ -41,6 +41,7 @@ const AllUsers = () => {
         }
     };
 
+
     return (
         <div className="overflow-x-auto">
             <h2 className='text-5xl text-center font-bold m-5'>All users</h2>

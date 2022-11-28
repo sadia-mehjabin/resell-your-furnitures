@@ -20,17 +20,16 @@ const Login = () => {
     const from = location?.state?.from?.pathname || '/' ;
     const [token] = useAccessToken(loginUserEmail)
 
-    
+    if(token){
+        navigate(from, {replace:true})
+    }
     const handleLogin = data => {
         setLoginError('')
         userLogin(data.email, data.password)
         .then(result => {
             const user = result.user;
             setLoginUserEmail(data.email)
-            toast('successfully Loged in')
-            setLoginUserEmail(data.email) 
-            navigate(from, {replace:true})
-             
+            toast('successfully Loged in')   
         })
         .catch(error => setLoginError(error.message))
     }

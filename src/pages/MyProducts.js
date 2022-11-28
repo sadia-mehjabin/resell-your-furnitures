@@ -90,7 +90,7 @@ const MyProducts = () => {
                                 {
                                     product?.status ?
                                     <td>
-                                        <button className='btn btn-sm btn-success' >Advertised</button> 
+                                        <p className='text-success font-bold'>Advertised</p> 
                                     </td> 
                                     : <td><button onClick={()=> handleChangeStatus(product._id)} className='btn btn-sm btn-success'>Advertise</button></td>
                                     
