@@ -32,7 +32,7 @@ const AddAProduct = () => {
         .then(data => {
             if(data.acknowledged === true){
                 toast('product added successfully')
-                navigate('/dashboard')
+                navigate('/dashboard/myProducts')
             }
             // setCreateUserEmail(email)
         })

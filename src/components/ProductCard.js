@@ -39,7 +39,7 @@ const ProductCard = ({product}) => {
                 <figure><img className='h-96' src={product?.data?.photoURL} alt="Movie"/></figure>
                 <div className="card-body">
                     <h2 className="card-title">product name: {productName}</h2>
-                    <p>Description: {description}</p>
+                    <p><span className='font-bold'>Description:</span> {description}</p>
                     <p>Location: {location}</p>
                     <p>Original price: ${OriginalPrice}</p>
                     <p>resale price: ${resalePrice}</p>

@@ -36,6 +36,9 @@ const MyProducts = () => {
         if(agree){
             fetch(`https://resell-your-furniture-server-side.vercel.app/products/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('newAccessToken')}`
+                }
             })
             .then(res => res.json())
             .then(data => {
@@ -50,11 +53,14 @@ const MyProducts = () => {
 
     const handleChangeStatus = id => {
         fetch(`https://resell-your-furniture-server-side.vercel.app/products/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('newAccessToken')}`
+            }
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            refetch()
         })
     }
     return (
